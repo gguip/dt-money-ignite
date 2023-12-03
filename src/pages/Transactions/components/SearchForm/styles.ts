@@ -29,6 +29,7 @@ export const SearchFormContainer = styled.form`
     border: 1px solid ${props => props.theme["green-300"]};
     color: ${props => props.theme["green-300"]};
     font-weight: bold;
+    cursor: pointer;
 
     &:hover {
       background: ${props => props.theme["green-500"]};
