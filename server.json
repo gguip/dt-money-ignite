@@ -15,6 +15,38 @@
       "category": "Alimentação",
       "price": 50,
       "createdAt": "2023-12-01T04:04:57.408Z"
+    },
+    {
+      "category": "Venda",
+      "description": "Desenvolvimento de App",
+      "price": 10000,
+      "type": "income",
+      "createdAt": "2023-12-06T06:53:13.169Z",
+      "id": 3
+    },
+    {
+      "category": "Alimentação",
+      "description": "Pastel",
+      "price": 10,
+      "type": "outcome",
+      "createdAt": "2023-12-06T06:56:27.181Z",
+      "id": 4
+    },
+    {
+      "category": "Alimentação",
+      "description": "Lanche",
+      "price": 5,
+      "type": "outcome",
+      "createdAt": "2023-12-06T07:03:48.978Z",
+      "id": 5
+    },
+    {
+      "category": "Pets",
+      "description": "Ração dos Gatos",
+      "price": 150,
+      "type": "outcome",
+      "createdAt": "2023-12-06T07:13:11.757Z",
+      "id": 6
     }
   ]
 }

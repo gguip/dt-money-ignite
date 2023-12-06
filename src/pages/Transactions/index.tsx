@@ -1,59 +1,41 @@
-
-import { useEffect, useState } from 'react'
+import { useContext } from 'react'
 
 import Header from '../../components/Header'
 import Summary from '../../components/Summary'
 import SearchForm from './components/SearchForm'
+import { dateFormatter, priceFormatter } from '../../utils/formatter'
+import { TransactionsContext } from '../../contexts/TransactionsContext'
 
 import * as S from './styles'
 
-interface TransactionProps {
-  id: number
-  description: string
-  type: 'income' | 'outcome'
-  price: number
-  category: string
-  createdAt: string
-}
-
 const Transactions = () => {
-  const [transactions, setTransactions] = useState<TransactionProps[]>([])
-
-  const loadTransactions = async () => {
-    const response = await fetch('http://localhost:3000/transactions')
-    const data = await response.json()
-
-    setTransactions(data)
-  }
-
-  useEffect(() => {
-    loadTransactions()
-  }, [])
+  const { transactions } = useContext(TransactionsContext)
 
   return (
     <>
-    <Header />
-    <Summary />
+      <Header />
+      <Summary />
 
-    <S.TransactionsContainer>
-      <SearchForm />
-    <S.TransactionsTable>
-      <tbody>
-            {transactions.map(transaction => (
+      <S.TransactionsContainer>
+        <SearchForm />
+        <S.TransactionsTable>
+          <tbody>
+            {transactions.map((transaction) => (
               <tr key={transaction.id}>
                 <td width="50%">{transaction.description}</td>
-          <td>
-              <S.PriceHighlight variant={transaction.type}>
-                {transaction.price}
-            </S.PriceHighlight>
-          </td>
-            <td>{transaction.category}</td>
-            <td>{transaction.createdAt}</td>
-        </tr>
-        ))}
-      </tbody>
-    </S.TransactionsTable>
-    </S.TransactionsContainer>
+                <td>
+                  <S.PriceHighlight variant={transaction.type}>
+                    {transaction.type === 'outcome' && '- '}
+                    {priceFormatter.format(transaction.price)}
+                  </S.PriceHighlight>
+                </td>
+                <td>{transaction.category}</td>
+                <td>{dateFormatter.format(new Date(transaction.createdAt))}</td>
+              </tr>
+            ))}
+          </tbody>
+        </S.TransactionsTable>
+      </S.TransactionsContainer>
     </>
   )
 }
